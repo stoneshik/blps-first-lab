@@ -7,10 +7,12 @@ import java.util.List;
 
 @Data
 public class TaxRegimeChoiceDto {
-    @JsonProperty("id")
-    private Long Id;
+    @JsonProperty("taxpayerCategories")
     private List<String> taxpayerCategories;
+    @JsonProperty("taxFeatures")
     private List<String> taxFeatures;
+    @JsonProperty("maxAnnualIncomeThousands")
     private Long maxAnnualIncomeThousands;
+    @JsonProperty("maxNumberEmployees")
     private Long maxNumberEmployees;
 }

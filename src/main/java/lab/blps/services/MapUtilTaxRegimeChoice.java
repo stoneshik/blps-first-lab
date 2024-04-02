@@ -10,10 +10,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public class MapUtils {
-    public TaxRegimeChoiceDto mapToRegimeChoiceDto(TaxRegimeChoice taxRegimeChoice) {
+public class MapUtilTaxRegimeChoice {
+    public static TaxRegimeChoiceDto mapToTaxRegimeChoiceDto(TaxRegimeChoice taxRegimeChoice) {
         TaxRegimeChoiceDto taxRegimeChoiceDto = new TaxRegimeChoiceDto();
-        taxRegimeChoiceDto.setId(taxRegimeChoice.getId());
         List<String> taxpayerCategories = new ArrayList<>();
         for (TaxpayerCategory taxpayerCategory : taxRegimeChoice.getTaxpayerCategories()) {
             taxpayerCategories.add(taxpayerCategory.name().toLowerCase());
@@ -29,9 +28,8 @@ public class MapUtils {
         return taxRegimeChoiceDto;
     }
 
-    public TaxRegimeChoice mapToRegimeChoice(TaxRegimeChoiceDto taxRegimeChoiceDto) {
+    public static TaxRegimeChoice mapToTaxRegimeChoice(TaxRegimeChoiceDto taxRegimeChoiceDto) {
         TaxRegimeChoice taxRegimeChoice = new TaxRegimeChoice();
-        taxRegimeChoice.setId(taxRegimeChoice.getId());
         List<TaxpayerCategory> taxpayerCategories = new ArrayList<>();
         for (String taxpayerCategory : taxRegimeChoiceDto.getTaxpayerCategories()) {
             taxpayerCategories.add(TaxpayerCategory.valueOf(taxpayerCategory.toUpperCase()));
@@ -42,8 +40,8 @@ public class MapUtils {
             taxpayerCategories.add(TaxpayerCategory.valueOf(taxFeature.toUpperCase()));
         }
         taxRegimeChoice.setTaxFeatures(taxFeatures);
-        taxRegimeChoice.setMaxAnnualIncomeThousands(taxRegimeChoice.getMaxAnnualIncomeThousands());
-        taxRegimeChoice.setMaxNumberEmployees(taxRegimeChoice.getMaxNumberEmployees());
+        taxRegimeChoice.setMaxAnnualIncomeThousands(taxRegimeChoiceDto.getMaxAnnualIncomeThousands());
+        taxRegimeChoice.setMaxNumberEmployees(taxRegimeChoiceDto.getMaxNumberEmployees());
         return taxRegimeChoice;
     }
 }

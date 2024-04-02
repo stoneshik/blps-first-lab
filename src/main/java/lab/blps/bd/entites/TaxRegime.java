@@ -3,7 +3,9 @@ package lab.blps.bd.entites;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
+import lombok.Data;
 
+@Data
 @Entity
 @Table(name = "tax_regime")
 public class TaxRegime {

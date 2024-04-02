@@ -8,7 +8,6 @@ import java.util.List;
 
 @Data
 public class TaxRegimeChoice {
-    private Long Id;
     private List<TaxpayerCategory> taxpayerCategories;
     private List<TaxFeature> taxFeatures;
     private Long maxAnnualIncomeThousands;
