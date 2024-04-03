@@ -29,6 +29,6 @@ public class TaxRegime {
     @Column(name = "title", length = 100)
     private String title;
     @NotNull
-    @Column(name = "description")
+    @Column(name = "description", columnDefinition = "TEXT")
     private String description;
 }

@@ -13,16 +13,16 @@ import java.util.List;
 @Repository
 public interface TaxRegimeRepository extends CrudRepository<TaxRegime, Long> {
     @Query("from TaxRegime tr where tr.taxpayerCategory in :taxpayerCategories " +
-            "and tr.maxAnnualIncomeThousands < :maxAnnualIncomeThousands " +
-            "and tr.maxNumberEmployees < :maxNumberEmployees")
+            "and tr.maxAnnualIncomeThousands <= :maxAnnualIncomeThousands " +
+            "and tr.maxNumberEmployees <= :maxNumberEmployees")
     List<TaxRegime> findByTaxpayerCategory(
             @Param("taxpayerCategories") List<TaxpayerCategory> taxpayerCategories,
             @Param("maxAnnualIncomeThousands") Long maxAnnualIncomeThousands,
             @Param("maxNumberEmployees") Long maxNumberEmployees
     );
     @Query("from TaxRegime tr where tr.taxFeature in :taxFeatures " +
-            "and tr.maxAnnualIncomeThousands < :maxAnnualIncomeThousands " +
-            "and tr.maxNumberEmployees < :maxNumberEmployees")
+            "and tr.maxAnnualIncomeThousands <= :maxAnnualIncomeThousands " +
+            "and tr.maxNumberEmployees <= :maxNumberEmployees")
     List<TaxRegime> findByTaxFeature(
             @Param("taxFeatures") List<TaxFeature> taxFeatures,
             @Param("maxAnnualIncomeThousands") Long maxAnnualIncomeThousands,
@@ -30,8 +30,8 @@ public interface TaxRegimeRepository extends CrudRepository<TaxRegime, Long> {
     );
     @Query("from TaxRegime tr where tr.taxpayerCategory in :taxpayerCategories " +
             "and tr.taxFeature in :taxFeatures " +
-            "and tr.maxAnnualIncomeThousands < :maxAnnualIncomeThousands " +
-            "and tr.maxNumberEmployees < :maxNumberEmployees")
+            "and tr.maxAnnualIncomeThousands <= :maxAnnualIncomeThousands " +
+            "and tr.maxNumberEmployees <= :maxNumberEmployees")
     List<TaxRegime> findByTaxpayerCategoryAndTaxFeature(
             @Param("taxpayerCategories") List<TaxpayerCategory> taxpayerCategories,
             @Param("taxFeatures") List<TaxFeature> taxFeatures,
