@@ -12,6 +12,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -29,7 +30,20 @@ public class ChoiceTaxRegimeController {
             produces = MediaType.APPLICATION_JSON_VALUE
     )
     public ResponseEntity<Object> choiceTaxRegime(@Valid @RequestBody TaxRegimeChoiceDto taxRegimeChoiceDto) {
-        TaxRegimeChoice taxRegimeChoice = MapUtilTaxRegimeChoice.mapToTaxRegimeChoice(taxRegimeChoiceDto);
+        TaxRegimeChoice taxRegimeChoice;
+        try {
+            taxRegimeChoice = MapUtilTaxRegimeChoice.mapToTaxRegimeChoice(taxRegimeChoiceDto);
+        } catch (NullPointerException e) {
+            return new ResponseEntity<>(
+                    new ResponseMessageWrapper("Неправильный формат запроса"),
+                    HttpStatus.BAD_REQUEST
+            );
+        } catch (IllegalArgumentException e) {
+            return new ResponseEntity<>(
+                    new ResponseMessageWrapper("Передана неправильная константа"),
+                    HttpStatus.BAD_REQUEST
+            );
+        }
         List<TaxRegime> taxRegimes = choiceTaxRegimeService.choice(taxRegimeChoice);
         List<TaxRegimeDto> taxRegimeDtoList = new ArrayList<>();
         for (TaxRegime taxRegime : taxRegimes) {

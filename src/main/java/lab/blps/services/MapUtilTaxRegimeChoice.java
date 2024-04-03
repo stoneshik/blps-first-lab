@@ -37,7 +37,7 @@ public class MapUtilTaxRegimeChoice {
         taxRegimeChoice.setTaxpayerCategories(taxpayerCategories);
         List<TaxFeature> taxFeatures = new ArrayList<>();
         for (String taxFeature : taxRegimeChoiceDto.getTaxFeatures()) {
-            taxpayerCategories.add(TaxpayerCategory.valueOf(taxFeature.toUpperCase()));
+            taxFeatures.add(TaxFeature.valueOf(taxFeature.toUpperCase()));
         }
         taxRegimeChoice.setTaxFeatures(taxFeatures);
         taxRegimeChoice.setMaxAnnualIncomeThousands(taxRegimeChoiceDto.getMaxAnnualIncomeThousands());
