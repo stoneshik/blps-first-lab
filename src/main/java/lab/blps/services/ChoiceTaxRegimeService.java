@@ -17,7 +17,10 @@ public class ChoiceTaxRegimeService {
         List<TaxRegime> taxRegimes;
         if (taxRegimeChoice.getTaxpayerCategories().isEmpty()) {
             if (taxRegimeChoice.getTaxFeatures().isEmpty()) {
-                taxRegimes = (List<TaxRegime>) taxRegimeRepository.findAll();
+                taxRegimes = taxRegimeRepository.findByMaxAnnualIncomeThousandsAndMaxNumberEmployees(
+                        taxRegimeChoice.getMaxAnnualIncomeThousands(),
+                        taxRegimeChoice.getMaxNumberEmployees()
+                );
             } else {
                 taxRegimes = taxRegimeRepository.findByTaxFeature(
                         taxRegimeChoice.getTaxFeatures(),

@@ -10,14 +10,20 @@ import lombok.Data;
 @Table(name = "tax_regime")
 public class TaxRegime {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "tax_regime_id_seq")
-    @Column(name = "id")
+    @GeneratedValue
+    @Column(name = "id", columnDefinition = "serial", nullable = false)
     private Long id;
+    @NotNull
+    @Column(name = "title", length = 100)
+    private String title;
+    @NotNull
+    @Column(name = "description", columnDefinition = "TEXT")
+    private String description;
     @Enumerated(EnumType.STRING)
     @Column(name = "taxpayer_category")
     private TaxpayerCategory taxpayerCategory;
     @Enumerated(EnumType.STRING)
-    @Column(name = "feature")
+    @Column(name = "tax_feature")
     private TaxFeature taxFeature;
     @Min(value = 100L)
     @Column(name = "max_annual_income_thousands")
@@ -25,10 +31,4 @@ public class TaxRegime {
     @Min(value = 0L)
     @Column(name = "max_number_employees")
     private Long maxNumberEmployees;
-    @NotNull
-    @Column(name = "title", length = 100)
-    private String title;
-    @NotNull
-    @Column(name = "description", columnDefinition = "TEXT")
-    private String description;
 }

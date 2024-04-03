@@ -1,6 +1,12 @@
 INSERT INTO tax_regime (
-    id, title, description, taxpayer_category, tax_feature, max_annual_income_thousands, max_number_employees
-) VALUES
+    id,
+    title,
+    description,
+    taxpayer_category,
+    tax_feature,
+    max_annual_income_thousands,
+    max_number_employees)
+VALUES
     (default,
      'УСН (доходы) для ИП\n',
      'Необходимость регистрации в качестве ИП - Да\n' ||

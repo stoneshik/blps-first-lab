@@ -7,6 +7,10 @@ import lombok.Data;
 public class TaxRegimeDto {
     @JsonProperty("id")
     private Long id;
+    @JsonProperty("title")
+    private String title;
+    @JsonProperty("description")
+    private String description;
     @JsonProperty("taxpayerCategory")
     private String taxpayerCategory;
     @JsonProperty("taxFeature")
@@ -15,8 +19,4 @@ public class TaxRegimeDto {
     private Long maxAnnualIncomeThousands;
     @JsonProperty("maxNumberEmployees")
     private Long maxNumberEmployees;
-    @JsonProperty("title")
-    private String title;
-    @JsonProperty("description")
-    private String description;
 }
