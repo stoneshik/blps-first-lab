@@ -43,11 +43,13 @@ public class ChoiceTaxRegimeController {
                     HttpStatus.BAD_REQUEST
             );
         }
-        List<TaxRegime> taxRegimes = choiceTaxRegimeService.choice(taxRegimeChoice);
+        /*List<TaxRegime> taxRegimes = choiceTaxRegimeService.choice(taxRegimeChoice);
         List<TaxRegimeDto> taxRegimeDtoList = new ArrayList<>();
         for (TaxRegime taxRegime : taxRegimes) {
             taxRegimeDtoList.add(MapUtilTaxRegime.mapToRegimeChoiceDto(taxRegime));
         }
         return new ResponseEntity<>(taxRegimeDtoList, HttpStatus.OK);
+         */
+        return new ResponseEntity<>("dwk", HttpStatus.OK);
     }
 }

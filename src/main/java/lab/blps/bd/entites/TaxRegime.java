@@ -19,12 +19,6 @@ public class TaxRegime {
     @NotNull
     @Column(name = "description", columnDefinition = "TEXT")
     private String description;
-    @Enumerated(EnumType.STRING)
-    @Column(name = "taxpayer_category")
-    private TaxpayerCategory taxpayerCategory;
-    @Enumerated(EnumType.STRING)
-    @Column(name = "tax_feature")
-    private TaxFeature taxFeature;
     @Min(value = 100L)
     @Column(name = "max_annual_income_thousands")
     private Long maxAnnualIncomeThousands;

@@ -1,6 +1,6 @@
-package lab.blps.bd.entites;
+package lab.blps.bd.entites.enums;
 
-public enum TaxFeature {
+public enum TaxFeatureEnum {
     // Производство подакцизных товаров
     PRODUCTION_EXCISABLE_GOODS,
     // Нет необходимости ведения налогового учета

@@ -1,11 +1,12 @@
 package lab.blps.bd.entites;
 
 import jakarta.persistence.*;
-import lab.blps.bd.entites.enums.TaxpayerCategoryEnum;
+import lab.blps.bd.entites.enums.TaxFeatureEnum;
+
 
 @Entity
-@Table(name = "taxpayer_category")
-public class TaxpayerCategory {
+@Table(name = "tax_features")
+public class TaxFeatures {
     @Id
     @GeneratedValue
     @Column(name = "id", columnDefinition = "serial", nullable = false)
@@ -15,5 +16,5 @@ public class TaxpayerCategory {
     private TaxRegime taxRegime;
     @Enumerated(EnumType.STRING)
     @Column(name = "taxpayer_category")
-    private TaxpayerCategoryEnum taxpayerCategoryEnum;
+    private TaxFeatureEnum taxFeatureEnum;
 }

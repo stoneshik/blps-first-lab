@@ -12,7 +12,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class ChoiceTaxRegimeService {
     private final TaxRegimeRepository taxRegimeRepository;
-
+/*
     public List<TaxRegime> choice(TaxRegimeChoice taxRegimeChoice) {
         List<TaxRegime> taxRegimes;
         if (taxRegimeChoice.getTaxpayerCategories().isEmpty()) {
@@ -47,4 +47,6 @@ public class ChoiceTaxRegimeService {
         }
         return taxRegimes;
     }
+    
+ */
 }

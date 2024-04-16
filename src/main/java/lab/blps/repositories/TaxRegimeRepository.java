@@ -1,8 +1,8 @@
 package lab.blps.repositories;
 
-import lab.blps.bd.entites.TaxFeature;
+import lab.blps.bd.entites.enums.TaxFeatureEnum;
 import lab.blps.bd.entites.TaxRegime;
-import lab.blps.bd.entites.TaxpayerCategory;
+import lab.blps.bd.entites.enums.TaxpayerCategoryEnum;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
@@ -12,7 +12,7 @@ import java.util.List;
 
 @Repository
 public interface TaxRegimeRepository extends CrudRepository<TaxRegime, Long> {
-    @Query(
+    /*@Query(
             "from TaxRegime tr where tr.maxAnnualIncomeThousands > :maxAnnualIncomeThousands " +
                     "and tr.maxNumberEmployees > :maxNumberEmployees "
     )
@@ -28,7 +28,7 @@ public interface TaxRegimeRepository extends CrudRepository<TaxRegime, Long> {
             "and (tr.taxpayerCategory = 'INDIVIDUAL_ENTREPRENEUR' OR tr.taxpayerCategory = 'LEGAL_ENTITY'))"
     )
     List<TaxRegime> findByTaxpayerCategory(
-            @Param("taxpayerCategories") List<TaxpayerCategory> taxpayerCategories,
+            @Param("taxpayerCategories") List<TaxpayerCategoryEnum> taxpayerCategories,
             @Param("maxAnnualIncomeThousands") Long maxAnnualIncomeThousands,
             @Param("maxNumberEmployees") Long maxNumberEmployees
     );
@@ -40,7 +40,7 @@ public interface TaxRegimeRepository extends CrudRepository<TaxRegime, Long> {
             "and (tr.taxFeature = 'NO_NEED_KEEP_TAX_RECORDS' OR tr.taxFeature = 'OBLIGATION_SUBMIT_DECLARATIONS'))"
     )
     List<TaxRegime> findByTaxFeature(
-            @Param("taxFeatures") List<TaxFeature> taxFeatures,
+            @Param("taxFeatures") List<TaxFeatureEnum> taxFeatures,
             @Param("maxAnnualIncomeThousands") Long maxAnnualIncomeThousands,
             @Param("maxNumberEmployees") Long maxNumberEmployees
     );
@@ -55,9 +55,9 @@ public interface TaxRegimeRepository extends CrudRepository<TaxRegime, Long> {
             "and (tr.taxFeature = 'NO_NEED_KEEP_TAX_RECORDS' OR tr.taxFeature = 'OBLIGATION_SUBMIT_DECLARATIONS'))"
     )
     List<TaxRegime> findByTaxpayerCategoryAndTaxFeature(
-            @Param("taxpayerCategories") List<TaxpayerCategory> taxpayerCategories,
-            @Param("taxFeatures") List<TaxFeature> taxFeatures,
+            @Param("taxpayerCategories") List<TaxpayerCategoryEnum> taxpayerCategories,
+            @Param("taxFeatures") List<TaxFeatureEnum> taxFeatures,
             @Param("maxAnnualIncomeThousands") Long maxAnnualIncomeThousands,
             @Param("maxNumberEmployees") Long maxNumberEmployees
-    );
+    );*/
 }
