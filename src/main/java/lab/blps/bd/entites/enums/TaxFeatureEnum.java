@@ -1,12 +1,7 @@
 package lab.blps.bd.entites.enums;
 
 public enum TaxFeatureEnum {
-    // Производство подакцизных товаров
-    PRODUCTION_EXCISABLE_GOODS,
-    // Нет необходимости ведения налогового учета
-    NO_NEED_KEEP_TAX_RECORDS,
-    // Нет обязанности предоставлять декларации
-    NO_OBLIGATION_SUBMIT_DECLARATIONS,
-    // Нет необходимости ведения налогового учета и обязанности предоставлять декларации
-    NO_NEED_KEEP_TAX_RECORDS_AND_OBLIGATION_SUBMIT_DECLARATIONS
+    PRODUCTION_EXCISABLE_GOODS,  // Производство подакцизных товаров
+    NO_NEED_KEEP_TAX_RECORDS,  // Нет необходимости ведения налогового учета
+    NO_OBLIGATION_SUBMIT_DECLARATIONS,  // Нет обязанности предоставлять декларации
 }
