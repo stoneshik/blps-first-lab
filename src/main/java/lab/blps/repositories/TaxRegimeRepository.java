@@ -15,14 +15,14 @@ import java.util.List;
 public interface TaxRegimeRepository extends CrudRepository<TaxRegime, Long> {
     @Query(
             "from TaxRegime tr where (tr.maxAnnualIncomeThousands is null or " +
-                    ":maxAnnualIncomeThousands <= tr.maxAnnualIncomeThousands) " +
-                    "and (tr.maxNumberEmployees is null or :maxNumberEmployees <= tr.maxNumberEmployees)"
+            ":maxAnnualIncomeThousands <= tr.maxAnnualIncomeThousands) " +
+            "and (tr.maxNumberEmployees is null or :maxNumberEmployees <= tr.maxNumberEmployees)"
     )
     List<TaxRegime> findByMaxAnnualIncomeThousandsAndMaxNumberEmployees(
             @Param("maxAnnualIncomeThousands") Long maxAnnualIncomeThousands,
             @Param("maxNumberEmployees") Long maxNumberEmployees
     );
-    /*@Query(
+    @Query(
             "from TaxRegime tr where (tr.taxpayerCategory in :taxpayerCategories " +
             "and tr.maxAnnualIncomeThousands > :maxAnnualIncomeThousands " +
             "and tr.maxNumberEmployees > :maxNumberEmployees) " +
@@ -61,5 +61,5 @@ public interface TaxRegimeRepository extends CrudRepository<TaxRegime, Long> {
             @Param("taxFeatures") List<TaxFeatureEnum> taxFeatures,
             @Param("maxAnnualIncomeThousands") Long maxAnnualIncomeThousands,
             @Param("maxNumberEmployees") Long maxNumberEmployees
-    );*/
+    );
 }

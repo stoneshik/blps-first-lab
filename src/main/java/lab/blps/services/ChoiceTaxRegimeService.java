@@ -16,16 +16,14 @@ public class ChoiceTaxRegimeService {
     private final TaxRegimeRepository taxRegimeRepository;
 
     public List<TaxRegimeWithFeaturesAndCategory> choice(TaxRegimeChoice taxRegimeChoice) {
-        List<TaxRegimeWithFeaturesAndCategory> taxRegimeWithFeaturesAndCategories;
-        taxRegimeWithFeaturesAndCategories = filterOnlyByMaxAnnualIncomeThousandsAndMaxNumberEmployees(taxRegimeChoice);
-        /*if (taxRegimeChoice.getTaxpayerCategories().isEmpty()) {
+        List<TaxRegimeWithFeaturesAndCategory> taxRegimesWithFeaturesAndCategories;
+        if (taxRegimeChoice.getTaxpayerCategories().isEmpty()) {
             if (taxRegimeChoice.getTaxFeatures().isEmpty()) {
-                taxRegimes = taxRegimeRepository.findByMaxAnnualIncomeThousandsAndMaxNumberEmployees(
-                        taxRegimeChoice.getMaxAnnualIncomeThousands(),
-                        taxRegimeChoice.getMaxNumberEmployees()
+                taxRegimesWithFeaturesAndCategories = filterOnlyByMaxAnnualIncomeThousandsAndMaxNumberEmployees(
+                        taxRegimeChoice
                 );
             } else {
-                taxRegimes = taxRegimeRepository.findByTaxFeature(
+                taxRegimesWithFeaturesAndCategories = taxRegimeRepository.findByTaxFeature(
                         taxRegimeChoice.getTaxFeatures(),
                         taxRegimeChoice.getMaxAnnualIncomeThousands(),
                         taxRegimeChoice.getMaxNumberEmployees()
@@ -33,7 +31,7 @@ public class ChoiceTaxRegimeService {
             }
         } else {
             if (taxRegimeChoice.getTaxFeatures().isEmpty()) {
-                taxRegimes = taxRegimeRepository
+                taxRegimesWithFeaturesAndCategories = taxRegimeRepository
                         .findByTaxpayerCategoryAndTaxFeature(
                                 taxRegimeChoice.getTaxpayerCategories(),
                                 taxRegimeChoice.getTaxFeatures(),
@@ -41,14 +39,14 @@ public class ChoiceTaxRegimeService {
                                 taxRegimeChoice.getMaxNumberEmployees()
                         );
             } else {
-                taxRegimes = taxRegimeRepository.findByTaxpayerCategory(
+                taxRegimesWithFeaturesAndCategories = taxRegimeRepository.findByTaxpayerCategory(
                         taxRegimeChoice.getTaxpayerCategories(),
                         taxRegimeChoice.getMaxAnnualIncomeThousands(),
                         taxRegimeChoice.getMaxNumberEmployees()
                 );
             }
-        }*/
-        return taxRegimeWithFeaturesAndCategories;
+        }
+        return taxRegimesWithFeaturesAndCategories;
     }
 
     private List<TaxRegimeWithFeaturesAndCategory> filterOnlyByMaxAnnualIncomeThousandsAndMaxNumberEmployees(
