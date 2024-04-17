@@ -64,6 +64,8 @@ public class ChoiceTaxRegimeService {
                     taxRegime.getId(),
                     taxRegime.getTitle(),
                     taxRegime.getDescription(),
+                    new ArrayList<>(),
+                    new ArrayList<>(),
                     taxRegime.getMaxAnnualIncomeThousands(),
                     taxRegime.getMaxNumberEmployees()
             );

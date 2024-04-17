@@ -35,12 +35,16 @@ public class TaxRegimeWithFeaturesAndCategory {
             Long id,
             String title,
             String description,
+            List<TaxpayerCategories> taxpayerCategories,
+            List<TaxFeatures> taxFeatures,
             Long maxAnnualIncomeThousands,
             Long maxNumberEmployees
     ) {
         this.id = id;
         this.title = title;
         this.description = description;
+        this.taxpayerCategories = taxpayerCategories;
+        this.taxFeatures = taxFeatures;
         this.maxAnnualIncomeThousands = maxAnnualIncomeThousands;
         this.maxNumberEmployees = maxNumberEmployees;
     }
