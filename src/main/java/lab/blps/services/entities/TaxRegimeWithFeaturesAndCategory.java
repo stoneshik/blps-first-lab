@@ -31,14 +31,16 @@ public class TaxRegimeWithFeaturesAndCategory {
     @Column(name = "max_number_employees")
     private Long maxNumberEmployees;
 
+    public TaxRegimeWithFeaturesAndCategory() {}
+
     public TaxRegimeWithFeaturesAndCategory(
             Long id,
-            String title,
-            String description,
+            @NotNull String title,
+            @NotNull String description,
             List<TaxpayerCategories> taxpayerCategories,
             List<TaxFeatures> taxFeatures,
-            Long maxAnnualIncomeThousands,
-            Long maxNumberEmployees
+            @Min(value = 100L) Long maxAnnualIncomeThousands,
+            @Min(value = 0L) Long maxNumberEmployees
     ) {
         this.id = id;
         this.title = title;
