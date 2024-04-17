@@ -5,12 +5,10 @@ import jakarta.validation.constraints.NotNull;
 import lab.blps.bd.entites.enums.TaxpayerCategoryEnum;
 import lombok.Data;
 
-import java.io.Serializable;
-
 @Data
 @Entity
 @Table(name = "taxpayer_category")
-public class TaxpayerCategories implements Serializable {
+public class TaxpayerCategories {
     @Id
     @GeneratedValue
     @Column(name = "id", columnDefinition = "serial", nullable = false)

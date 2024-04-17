@@ -5,12 +5,10 @@ import jakarta.validation.constraints.NotNull;
 import lab.blps.bd.entites.enums.TaxFeatureEnum;
 import lombok.Data;
 
-import java.io.Serializable;
-
 @Data
 @Entity
 @Table(name = "tax_features")
-public class TaxFeatures implements Serializable {
+public class TaxFeatures {
     @Id
     @GeneratedValue
     @Column(name = "id", columnDefinition = "serial", nullable = false)

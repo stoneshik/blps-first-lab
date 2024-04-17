@@ -14,8 +14,9 @@ import java.util.List;
 @Repository
 public interface TaxRegimeRepository extends CrudRepository<TaxRegime, Long> {
     @Query(
-            "from TaxRegime tr where :maxAnnualIncomeThousands <= tr.maxAnnualIncomeThousands " +
-                    "and :maxNumberEmployees <= tr.maxNumberEmployees"
+            "from TaxRegime tr where (tr.maxAnnualIncomeThousands is null or " +
+                    ":maxAnnualIncomeThousands <= tr.maxAnnualIncomeThousands) " +
+                    "and (tr.maxNumberEmployees is null or :maxNumberEmployees <= tr.maxNumberEmployees)"
     )
     List<TaxRegime> findByMaxAnnualIncomeThousandsAndMaxNumberEmployees(
             @Param("maxAnnualIncomeThousands") Long maxAnnualIncomeThousands,
