@@ -1,8 +1,8 @@
 package lab.blps.controllers;
 
 import jakarta.validation.Valid;
-import lab.blps.services.ChoiceTaxRegimeService;
-import lab.blps.services.MapTaxRegimeChoice;
+import lab.blps.services.choice.ChoiceTaxRegimeService;
+import lab.blps.services.choice.MapTaxRegimeChoice;
 import lab.blps.services.MapTaxRegimeWithFeaturesAndCategory;
 import lab.blps.services.dto.TaxRegimeChoiceDto;
 import lab.blps.services.dto.TaxRegimeWithFeaturesAndCategoryDto;
