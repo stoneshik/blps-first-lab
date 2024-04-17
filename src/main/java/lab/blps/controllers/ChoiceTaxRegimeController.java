@@ -1,13 +1,15 @@
 package lab.blps.controllers;
 
 import jakarta.validation.Valid;
-import lab.blps.bd.MapUtilTaxRegime;
 import lab.blps.bd.dto.TaxRegimeDto;
 import lab.blps.bd.entites.TaxRegime;
 import lab.blps.services.ChoiceTaxRegimeService;
-import lab.blps.services.MapUtilTaxRegimeChoice;
+import lab.blps.services.MapTaxRegimeChoice;
+import lab.blps.services.MapTaxRegimeWithFeaturesAndCategory;
 import lab.blps.services.dto.TaxRegimeChoiceDto;
+import lab.blps.services.dto.TaxRegimeWithFeaturesAndCategoryDto;
 import lab.blps.services.entities.TaxRegimeChoice;
+import lab.blps.services.entities.TaxRegimeWithFeaturesAndCategory;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -31,7 +33,7 @@ public class ChoiceTaxRegimeController {
     public ResponseEntity<Object> choiceTaxRegime(@Valid @RequestBody TaxRegimeChoiceDto taxRegimeChoiceDto) {
         TaxRegimeChoice taxRegimeChoice;
         try {
-            taxRegimeChoice = MapUtilTaxRegimeChoice.mapToTaxRegimeChoice(taxRegimeChoiceDto);
+            taxRegimeChoice = MapTaxRegimeChoice.mapFromDto(taxRegimeChoiceDto);
         } catch (NullPointerException e) {
             return new ResponseEntity<>(
                     new ResponseMessageWrapper("Неправильный формат запроса"),
@@ -43,13 +45,11 @@ public class ChoiceTaxRegimeController {
                     HttpStatus.BAD_REQUEST
             );
         }
-        /*List<TaxRegime> taxRegimes = choiceTaxRegimeService.choice(taxRegimeChoice);
-        List<TaxRegimeDto> taxRegimeDtoList = new ArrayList<>();
-        for (TaxRegime taxRegime : taxRegimes) {
-            taxRegimeDtoList.add(MapUtilTaxRegime.mapToRegimeChoiceDto(taxRegime));
+        List<TaxRegimeWithFeaturesAndCategory> taxRegimes = choiceTaxRegimeService.choice(taxRegimeChoice);
+        List<TaxRegimeWithFeaturesAndCategoryDto> taxRegimeDtoList = new ArrayList<>();
+        for (TaxRegimeWithFeaturesAndCategory taxRegime : taxRegimes) {
+            taxRegimeDtoList.add(MapTaxRegimeWithFeaturesAndCategory.mapToDto(taxRegime));
         }
         return new ResponseEntity<>(taxRegimeDtoList, HttpStatus.OK);
-         */
-        return new ResponseEntity<>("dwk", HttpStatus.OK);
     }
 }

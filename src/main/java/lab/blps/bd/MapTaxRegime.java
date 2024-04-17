@@ -4,8 +4,8 @@ package lab.blps.bd;
 import lab.blps.bd.dto.TaxRegimeDto;
 import lab.blps.bd.entites.TaxRegime;
 
-public class MapUtilTaxRegime {
-    public static TaxRegimeDto mapToRegimeChoiceDto(TaxRegime taxRegime) {
+public class MapTaxRegime {
+    public static TaxRegimeDto mapToDto(TaxRegime taxRegime) {
         TaxRegimeDto taxRegimeDto = new TaxRegimeDto();
         taxRegimeDto.setId(taxRegime.getId());
         taxRegimeDto.setTitle(taxRegime.getTitle());
@@ -15,7 +15,7 @@ public class MapUtilTaxRegime {
         return taxRegimeDto;
     }
 
-    public static TaxRegime mapToRegimeChoice(TaxRegimeDto taxRegimeDto) {
+    public static TaxRegime mapFromDto(TaxRegimeDto taxRegimeDto) {
         TaxRegime taxRegime = new TaxRegime();
         taxRegime.setId(taxRegimeDto.getId());
         taxRegime.setTitle(taxRegimeDto.getTitle());

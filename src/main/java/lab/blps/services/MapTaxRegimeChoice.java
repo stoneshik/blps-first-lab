@@ -4,14 +4,12 @@ import lab.blps.bd.entites.enums.TaxFeatureEnum;
 import lab.blps.bd.entites.enums.TaxpayerCategoryEnum;
 import lab.blps.services.dto.TaxRegimeChoiceDto;
 import lab.blps.services.entities.TaxRegimeChoice;
-import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
 
-@Service
-public class MapUtilTaxRegimeChoice {
-    public static TaxRegimeChoiceDto mapToTaxRegimeChoiceDto(TaxRegimeChoice taxRegimeChoice) {
+public class MapTaxRegimeChoice {
+    public static TaxRegimeChoiceDto mapToDto(TaxRegimeChoice taxRegimeChoice) {
         TaxRegimeChoiceDto taxRegimeChoiceDto = new TaxRegimeChoiceDto();
         List<String> taxpayerCategories = new ArrayList<>();
         for (TaxpayerCategoryEnum taxpayerCategoryEnum : taxRegimeChoice.getTaxpayerCategories()) {
@@ -28,7 +26,7 @@ public class MapUtilTaxRegimeChoice {
         return taxRegimeChoiceDto;
     }
 
-    public static TaxRegimeChoice mapToTaxRegimeChoice(TaxRegimeChoiceDto taxRegimeChoiceDto) {
+    public static TaxRegimeChoice mapFromDto(TaxRegimeChoiceDto taxRegimeChoiceDto) {
         TaxRegimeChoice taxRegimeChoice = new TaxRegimeChoice();
         List<TaxpayerCategoryEnum> taxpayerCategories = new ArrayList<>();
         for (String taxpayerCategory : taxRegimeChoiceDto.getTaxpayerCategories()) {
