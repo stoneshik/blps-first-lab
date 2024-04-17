@@ -17,6 +17,7 @@ public class TaxpayerCategories {
     @JoinColumn(name = "tax_regime_id", nullable = false)
     private TaxRegime taxRegime;
     @NotNull
+    @Enumerated(EnumType.STRING)
     @Column(name = "taxpayer_category")
     private TaxpayerCategoryEnum taxpayerCategoryEnum;
 }

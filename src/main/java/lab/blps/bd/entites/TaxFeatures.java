@@ -17,6 +17,7 @@ public class TaxFeatures {
     @JoinColumn(name = "tax_regime_id", nullable = false)
     private TaxRegime taxRegime;
     @NotNull
+    @Enumerated(EnumType.STRING)
     @Column(name = "tax_feature")
     private TaxFeatureEnum taxFeatureEnum;
 }
