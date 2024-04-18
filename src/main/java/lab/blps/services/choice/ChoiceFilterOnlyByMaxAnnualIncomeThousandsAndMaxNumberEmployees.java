@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @RequiredArgsConstructor
-public class ChoiceFilterOnlyByMaxAnnualIncomeThousandsAndMaxNumberEmployees implements ChoiceFilter {
+public class ChoiceFilterOnlyByMaxAnnualIncomeThousandsAndMaxNumberEmployees extends ChoiceFilter {
     private final TaxRegimeRepository taxRegimeRepository;
 
     @Override
