@@ -18,7 +18,7 @@ public class ChoiceFilterByTaxFeatures implements ChoiceFilter {
     @Override
     public List<TaxRegimeWithFeaturesAndCategory> filter(TaxRegimeChoice taxRegimeChoice) {
         List<TaxFeatures> taxFeatures = taxRegimeRepository.findTaxFeatures(taxRegimeChoice.getTaxFeatures());
-        List<Long> filteredTaxRegimeIds = getFilteredIdsFromFeatures(taxFeatures);
+        List<Long> filteredTaxRegimeIds = getTaxRegimeIdsFromTaxFeatures(taxFeatures);
         List<TaxRegime> taxRegimes = taxRegimeRepository
                 .findByMaxAnnualIncomeThousandsAndMaxNumberEmployeesAndFilteredTaxRegimeIds(
                         taxRegimeChoice.getMaxAnnualIncomeThousands(),
@@ -42,10 +42,10 @@ public class ChoiceFilterByTaxFeatures implements ChoiceFilter {
         return taxRegimesWithFeaturesAndCategories;
     }
 
-    private List<Long> getFilteredIdsFromFeatures(List<TaxFeatures> taxFeatures) {
+    private List<Long> getTaxRegimeIdsFromTaxFeatures(List<TaxFeatures> taxFeatures) {
         List<Long> filteredTaxRegimeIds = new ArrayList<>();
         for (TaxFeatures taxFeature: taxFeatures) {
-            filteredTaxRegimeIds.add(taxFeature.getId());
+            filteredTaxRegimeIds.add(taxFeature.getTaxRegime().getId());
         }
         return filteredTaxRegimeIds;
     }
