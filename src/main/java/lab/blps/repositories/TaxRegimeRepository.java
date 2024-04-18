@@ -1,9 +1,9 @@
 package lab.blps.repositories;
 
 import lab.blps.bd.entites.TaxFeatures;
+import lab.blps.bd.entites.TaxRegime;
 import lab.blps.bd.entites.TaxpayerCategories;
 import lab.blps.bd.entites.enums.TaxFeatureEnum;
-import lab.blps.bd.entites.TaxRegime;
 import lab.blps.bd.entites.enums.TaxpayerCategoryEnum;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
@@ -48,5 +48,13 @@ public interface TaxRegimeRepository extends CrudRepository<TaxRegime, Long> {
     )
     List<TaxFeatures> findTaxFeatures(
             @Param("taxFeatures") List<TaxFeatureEnum> taxFeatures
+    );
+
+    @Query(
+            "from TaxFeatures tf where tf.taxFeatureEnum in :taxFeatures and tf.taxRegime.id in :filteredTaxRegimeIds"
+    )
+    List<TaxFeatures> findTaxFeaturesByFilteredTaxRegimeIds(
+            @Param("taxFeatures") List<TaxFeatureEnum> taxFeatures,
+            @Param("filteredTaxRegimeIds") List<Long> filteredTaxRegimeIds
     );
 }

@@ -1,7 +1,10 @@
 package lab.blps.bd.entites.enums;
 
 public enum TaxpayerCategoryEnum {
-    INDIVIDUAL_ENTREPRENEUR,  // Индивидуальный предприниматель
-    LEGAL_ENTITY,  // Юридическое лицо
-    INDIVIDUAL  // Физическое лицо, не являющееся индивидуальным предпринимателем
+    // Индивидуальный предприниматель
+    INDIVIDUAL_ENTREPRENEUR,
+    // Юридическое лицо
+    LEGAL_ENTITY,
+    // Физическое лицо, не являющееся индивидуальным предпринимателем
+    INDIVIDUAL
 }

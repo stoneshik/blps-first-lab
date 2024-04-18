@@ -27,13 +27,12 @@ public class ChoiceFilterByTaxFeatures implements ChoiceFilter {
                 );
         List<TaxRegimeWithFeaturesAndCategory> taxRegimesWithFeaturesAndCategories = new ArrayList<>();
         for (TaxRegime taxRegime : taxRegimes) {
-            List<TaxFeatures> filteredTaxFeatures = filterTaxFeatures(taxRegime, taxFeatures);
             TaxRegimeWithFeaturesAndCategory taxRegimeWithFeaturesAndCategory = new TaxRegimeWithFeaturesAndCategory(
                     taxRegime.getId(),
                     taxRegime.getTitle(),
                     taxRegime.getDescription(),
                     new ArrayList<>(),
-                    filteredTaxFeatures,
+                    filterTaxFeatures(taxRegime, taxFeatures),
                     taxRegime.getMaxAnnualIncomeThousands(),
                     taxRegime.getMaxNumberEmployees()
             );

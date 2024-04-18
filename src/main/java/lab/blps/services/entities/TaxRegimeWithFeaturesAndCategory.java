@@ -1,6 +1,7 @@
 package lab.blps.services.entities;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Column;
+import jakarta.persistence.Id;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
 import lab.blps.bd.entites.TaxFeatures;

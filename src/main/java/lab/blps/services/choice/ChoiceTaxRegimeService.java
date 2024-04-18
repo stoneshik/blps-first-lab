@@ -1,7 +1,7 @@
 package lab.blps.services.choice;
 
-import lab.blps.services.entities.TaxRegimeChoice;
 import lab.blps.repositories.TaxRegimeRepository;
+import lab.blps.services.entities.TaxRegimeChoice;
 import lab.blps.services.entities.TaxRegimeWithFeaturesAndCategory;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -28,9 +28,9 @@ public class ChoiceTaxRegimeService {
             }
         } else {
             if (taxRegimeChoice.getTaxFeatures().isEmpty()) {
-                chosenFilter = new ChoiceFilterByTaxpayerCategoryAndTaxFeature(taxRegimeRepository);
-            } else {
                 chosenFilter = new ChoiceFilterByTaxpayerCategory(taxRegimeRepository);
+            } else {
+                chosenFilter = new ChoiceFilterByTaxpayerCategoryAndTaxFeature(taxRegimeRepository);
             }
         }
         return chosenFilter;

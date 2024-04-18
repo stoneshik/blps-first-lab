@@ -1,5 +1,6 @@
 package lab.blps.services.choice;
 
+import lab.blps.bd.entites.TaxRegime;
 import lab.blps.bd.entites.TaxpayerCategories;
 import lab.blps.repositories.TaxRegimeRepository;
 import lab.blps.services.entities.TaxRegimeChoice;
@@ -16,14 +17,50 @@ public class ChoiceFilterByTaxpayerCategory implements ChoiceFilter {
 
     @Override
     public List<TaxRegimeWithFeaturesAndCategory> filter(TaxRegimeChoice taxRegimeChoice) {
-        return null;
+        List<TaxpayerCategories> taxpayerCategories = taxRegimeRepository.findTaxpayerCategories(
+                taxRegimeChoice.getTaxpayerCategories()
+        );
+        List<Long> filteredTaxRegimeIds = getTaxRegimeIdsFromTaxpayerCategories(taxpayerCategories);
+        List<TaxRegime> taxRegimes = taxRegimeRepository
+                .findByMaxAnnualIncomeThousandsAndMaxNumberEmployeesAndFilteredTaxRegimeIds(
+                        taxRegimeChoice.getMaxAnnualIncomeThousands(),
+                        taxRegimeChoice.getMaxNumberEmployees(),
+                        filteredTaxRegimeIds
+                );
+        List<TaxRegimeWithFeaturesAndCategory> taxRegimesWithFeaturesAndCategories = new ArrayList<>();
+        for (TaxRegime taxRegime : taxRegimes) {
+            TaxRegimeWithFeaturesAndCategory taxRegimeWithFeaturesAndCategory = new TaxRegimeWithFeaturesAndCategory(
+                    taxRegime.getId(),
+                    taxRegime.getTitle(),
+                    taxRegime.getDescription(),
+                    filterTaxpayerCategories(taxRegime, taxpayerCategories),
+                    new ArrayList<>(),
+                    taxRegime.getMaxAnnualIncomeThousands(),
+                    taxRegime.getMaxNumberEmployees()
+            );
+            taxRegimesWithFeaturesAndCategories.add(taxRegimeWithFeaturesAndCategory);
+        }
+        return taxRegimesWithFeaturesAndCategories;
     }
 
-    private List<Long> getFilteredIdsFromCategories(List<TaxpayerCategories> taxpayerCategories) {
+    private List<Long> getTaxRegimeIdsFromTaxpayerCategories(List<TaxpayerCategories> taxpayerCategories) {
         List<Long> filteredTaxRegimeIds = new ArrayList<>();
-        for (TaxpayerCategories taxCategory: taxpayerCategories) {
-            filteredTaxRegimeIds.add(taxCategory.getId());
+        for (TaxpayerCategories taxpayerCategory: taxpayerCategories) {
+            filteredTaxRegimeIds.add(taxpayerCategory.getTaxRegime().getId());
         }
         return filteredTaxRegimeIds;
+    }
+
+    private List<TaxpayerCategories> filterTaxpayerCategories(
+            TaxRegime taxRegime,
+            List<TaxpayerCategories> taxpayerCategories
+    ) {
+        List<TaxpayerCategories> filteredTaxpayerCategories = new ArrayList<>();
+        for (TaxpayerCategories taxpayerCategory : taxpayerCategories) {
+            if (taxpayerCategory.getTaxRegime().getId().equals(taxRegime.getId())) {
+                filteredTaxpayerCategories.add(taxpayerCategory);
+            }
+        }
+        return filteredTaxpayerCategories;
     }
 }
